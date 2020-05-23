@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">aidl</string>
+    <dimen name="font_15">15sp</dimen>
+</resources>
