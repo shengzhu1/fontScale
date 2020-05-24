@@ -1,6 +1,8 @@
 package top.androider.fontscale.filter;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -18,9 +20,27 @@ public class SizeAttrFilter extends FontScaleFilter {
     private boolean useH;
     @Override
     public boolean filter(Context context, AttributeSet attrs) {
-        useW = useSp(context,attrs,ANDROID_NAMESPACE,"layout_width");
-        useH = useSp(context,attrs,ANDROID_NAMESPACE,"layout_height");
+        useW = filterAttr(context,attrs,"layout_width",new int[] {android.R.attr.layout_width});
+        useH = filterAttr(context,attrs,"layout_height",new int[] {android.R.attr.layout_height});
         return  useW || useH;
+    }
+
+    public boolean filterAttr(Context context, AttributeSet attrs,String attr,int[] attrsArray){
+        String attrValue = attrs.getAttributeValue(ANDROID_NAMESPACE, attr);
+        if (!TextUtils.isEmpty(attrValue)){
+            return useSp(context,attrValue);
+        }
+        String style = attrs.getAttributeValue(null,"style");
+        boolean useSp = false;
+        if (!TextUtils.isEmpty(style)){
+            String res = style.substring(1);
+            int resId = Integer.parseInt(res);
+            TypedArray array = context.getTheme().obtainStyledAttributes(resId, attrsArray);
+            int index = array.getIndex(0);
+            useSp = useSp(context,array.getString(index));
+            array.recycle();
+        }
+        return useSp;
     }
 
     @Override

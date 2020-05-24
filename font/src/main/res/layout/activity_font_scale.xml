@@ -11,6 +11,14 @@
         android:textSize="15sp"
         android:text="测试文章"
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/font_15"
+        android:background="@color/colorPrimary"/>
+    <View
+        android:layout_width="match_parent"
+        style="@style/height"
+        android:background="@color/colorAccent"/>
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
@@ -27,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="1.0"
-            android:textSize="@dimen/font_15"
+            style="@style/button"
             android:gravity="center"
             android:onClick="reset"
             />
@@ -36,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="1.5"
-            android:textSize="@dimen/font_15"
+            android:textAppearance="@style/TextApp"
             android:gravity="center"
             android:onClick="scale"
             />

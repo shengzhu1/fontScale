@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">aidl</string>
+    <string name="app_name">字体缩放</string>
     <dimen name="font_15">15sp</dimen>
 </resources>

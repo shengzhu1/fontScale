@@ -11,15 +11,19 @@ public abstract class FontScaleFilter extends AndroidAttrFilter {
 
     public boolean useSp(Context context, AttributeSet attrs, String namespace, String name){
         String string = attrs.getAttributeValue(namespace, name);
-        if (TextUtils.isEmpty(string)){
+        return useSp(context,string);
+    }
+
+    public boolean useSp(Context context, String valueStr){
+        if (TextUtils.isEmpty(valueStr)){
             return false;
         }
-        if (string.endsWith("sp")){
+        if (valueStr.endsWith("sp")){
             return true;
         }
-        if (string.startsWith("@")){
+        if (valueStr.startsWith("@")){
             TypedValue value = new TypedValue();
-            int id = Integer.parseInt(string.substring(1));
+            int id = Integer.parseInt(valueStr.substring(1));
             context.getResources().getValue(id,value,false);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 if (value.getComplexUnit() == TypedValue.COMPLEX_UNIT_SP){

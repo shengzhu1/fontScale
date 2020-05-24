@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="button">
+        <item name="android:textSize">@dimen/font_15</item>
+    </style>
+
+    <style name="TextApp" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="height">
+        <item name="android:layout_height">@dimen/font_15</item>
+    </style>
 </resources>
